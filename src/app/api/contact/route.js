@@ -1,12 +1,21 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Resend instance
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResendClient = () => {
+  const apiKey = process.env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('Missing RESEND_API_KEY environment variable');
+  }
+
+  return new Resend(apiKey);
+};
 
 export async function POST(req) {
   try {
     const { name, email, subject, message } = await req.json();
+
+    const resend = getResendClient();
 
     // Validation
     if (!name || !email || !subject || !message) {
