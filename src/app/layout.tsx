@@ -5,6 +5,7 @@ import Providers from "./providers";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
